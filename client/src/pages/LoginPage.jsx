@@ -8,7 +8,7 @@ const LoginPage = () => {
 
   const nav = useNavigate()
     const {auth,token,loading,error} = useSelector((state)=>state.userReducer)
-    console.log(auth,token)
+    // console.log(auth,token)
     if(auth){
         nav("/notes")
     }
@@ -24,7 +24,7 @@ const LoginPage = () => {
 
 
   return (
-    loading? <><h1>Loading...</h1></>:
+    loading? <><h1 className='text-3xl text-center justify-center items-center'>Loading...</h1></>:
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center mb-8">Login</h2>

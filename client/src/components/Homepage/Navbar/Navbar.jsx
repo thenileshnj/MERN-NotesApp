@@ -2,12 +2,21 @@
 
 import { Link } from 'react-router-dom';
 import Logo from "../../../assets/logo.png";
+import { useSelector } from "react-redux"
 
 
 import React, { useState } from 'react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const {auth,token,loading,error} = useSelector((state)=>state.userReducer)
+
+  const handleAuth= ()=>{
+    if(auth) auth(false)
+  }
+
+  // console.log(auth);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,7 +32,7 @@ const Navbar = () => {
               src={Logo}
               alt="Logo"
             />
-            <span className="text-white font-bold text-xl">My Notes App</span>
+            <span className="text-white font-bold text-xl">My NotesApp</span>
           </div>
           <div className="md:hidden">
             <button
@@ -57,15 +66,15 @@ const Navbar = () => {
             </button>
           </div>
           <div className="hidden md:flex space-x-4">
-            <Link to="/login" className="text-white hover:text-white">Login</Link>
-            <Link to="/register" className="text-white hover:text-white">Signup</Link>
+            <Link onClick={handleAuth} to="/login" className="text-white hover:text-white">{auth?<>LogOut</>:<>LogIn</>}</Link>
+            <Link to="/register" className="text-white hover:text-white">{auth?"":<>Signup</>}</Link>
             <Link to="/notes" onClick={()=>{}} className="text-white hover:text-white">My Notes</Link>
           </div>
         </div>
         {isMenuOpen && (
           <div className="md:hidden mt-4">
-            <Link to="/login" className="block text-white hover:text-white">Login</Link>
-            <Link to="/register" className="block text-white hover:text-white mt-2">Signup</Link>
+            <Link onClick={handleAuth} to="/login" className="block text-white hover:text-white">{auth?<>LogOut</>:<>LogIn</>}</Link>
+            <Link to="/register" className="block text-white hover:text-white mt-2">{auth?"":<>Signup</>}</Link>
           </div>
         )}
       </div>

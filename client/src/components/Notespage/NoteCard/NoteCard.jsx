@@ -23,7 +23,7 @@ const NoteCard = ({title, body, user, _id}) => {
 
   return (
     <>
-      <div className='w-1/4'>
+      <div className='w-auto min-w-min bg-purple-700 shadow-xl drop-shadow-lg rounded-2xl p-2'>
           <h2 className="text-2xl font-semibold mb-2">{title}</h2>
           <p className="mb-2">{body}</p>
           <div className="flex justify-end">

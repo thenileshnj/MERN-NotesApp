@@ -7,10 +7,9 @@ import { BsPlusLg } from "react-icons/bs";
 const NotesPage = () => {
   const dispatch = useDispatch();
   const { loading, error, data } = useSelector((state) => state.noteReducer);
-  console.log(data);
+  // console.log(data);
   const [notes, setNotes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = useRef(null);
   const finalRef = useRef(null);
@@ -28,11 +27,13 @@ const NotesPage = () => {
   const createNote = () => {
     dispatch(createNotes({ title, body }));
     setIsModalOpen(false);
+    setTitle("")
+    setBody("")
   };
 
   return (
     <>
-    <div className="flex mx-4 my-4 p-8 gap-2 ">
+    <div className="flex flex-wrap mx-4 my-4 p-8 gap-2 ">
       {notes?.map((el) => (
         <NoteCard {...el} />
       ))}
